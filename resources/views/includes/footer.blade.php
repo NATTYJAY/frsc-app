@@ -5,7 +5,7 @@
     <!-- ============================================================== -->
     <!-- footer -->
     <!-- ============================================================== -->
-    <footer class="footer"> © 2017 Adminwrap by wrappixel.com </footer>
+    <footer class="footer"> © 2018 FRSC Software </footer>
     <!-- ============================================================== -->
     <!-- End footer -->
     <!-- ============================================================== -->
@@ -38,6 +38,8 @@
     <!--morris JavaScript -->
     <script src="{{asset('assets/node_modules/raphael/raphael-min.js')}}"></script>
     <script src="{{asset('assets/node_modules/morrisjs/morris.min.js')}}"></script>
+
+    <script src="{{asset('js/morris-data.js')}}"></script>
     <!--c3 JavaScript -->
     <script src="{{asset('assets/node_modules/d3/d3.min.js')}}"></script>
     <script src="{{asset('assets/node_modules/c3-master/c3.min.js')}}"></script>

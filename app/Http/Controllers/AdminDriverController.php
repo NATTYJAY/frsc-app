@@ -164,6 +164,7 @@ class AdminDriverController extends Controller
     {
         //
     }
+    
 
      protected function getRandomUserName($len = 5) {
             $word = array_merge(range('0', '9'), range('A', 'Z'));

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 06, 2019 at 01:46 AM
+-- Generation Time: Jan 30, 2019 at 01:58 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -21,6 +21,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `frsc_dbc`
 --
+CREATE DATABASE IF NOT EXISTS `frsc_dbc` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `frsc_dbc`;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admins`
+--
+
+DROP TABLE IF EXISTS `admins`;
+CREATE TABLE `admins` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `name` varchar(191) NOT NULL,
+  `email` varchar(191) NOT NULL,
+  `password` varchar(191) NOT NULL,
+  `remember_token` varchar(100) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `admins`
+--
+
+INSERT INTO `admins` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'admin admin', 'admin@admin.com', '$2y$10$KIdxS3ibHvlyWTPRzXDw8eBupH1JKRejvEEKSmDtEw7.F1qHITj4O', NULL, '2019-01-28 20:40:05', '2019-01-28 20:40:05'),
+(2, 'king king', 'king@king.com', '$2y$10$G0Wk2cBjrSaVr0N1Kip6k.Odu3JjNoLOwvaLIqQs4zTFYagPuyPTS', '8FXedO0beAOg1cgExUGXHhnfcdRTWXFSaErhMjinRrDLIDmluMCdDyebbyJx', '2019-01-29 04:19:57', '2019-01-29 04:19:57');
 
 -- --------------------------------------------------------
 
@@ -28,10 +55,13 @@ SET time_zone = "+00:00";
 -- Table structure for table `category`
 --
 
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `id` int(10) UNSIGNED NOT NULL,
+  `admins_id` int(11) DEFAULT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `description` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `image_path` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -40,11 +70,14 @@ CREATE TABLE `category` (
 -- Dumping data for table `category`
 --
 
-INSERT INTO `category` (`id`, `name`, `description`, `created_at`, `updated_at`) VALUES
-(1, 'Jack', 'description', '2018-12-29 04:36:34', '2019-01-04 16:54:13'),
-(2, 'fire Extinguisher', 'use to relinguish fire. na just english i type o', '2018-12-29 04:37:28', '2019-01-04 16:55:07'),
-(3, 'Triangle', 'Use for vehicle Identification please', '2018-12-29 05:06:34', '2019-01-04 16:55:45'),
-(4, 'Sprayer', 'I no know oo', '2019-01-04 16:56:10', '2019-01-04 16:56:10');
+INSERT INTO `category` (`id`, `admins_id`, `name`, `description`, `image_path`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'Jack', 'description1', '154863544449273045_2237972466442061_8491751248771416064_n.jpg', '2018-12-29 04:36:34', '2019-01-28 01:50:41'),
+(3, NULL, 'Triangle', 'Use for', '1548633474atiku.jpg', '2018-12-29 05:06:34', '2019-01-28 08:52:33'),
+(4, 1, 'Sprayer', 'I no know oohj', '1548633474atiku.jpg', '2019-01-04 16:56:10', '2019-01-28 08:52:15'),
+(5, 1, 'triangles', 'yes', '154862028440858893_2121687524714908_6010565306345324544_n.jpg', '2019-01-28 04:18:04', '2019-01-28 04:18:04'),
+(6, 1, 'okayna', 'udjj', '1548633474atiku.jpg', '2019-01-28 07:57:54', '2019-01-28 07:57:54'),
+(7, 1, 'fire Extinguisher', 'ooooo', '154863544449273045_2237972466442061_8491751248771416064_n.jpg', '2019-01-28 08:30:44', '2019-01-28 20:47:39'),
+(8, 2, 'correct', 'were', '1548677914_5597007350704635904_n.jpg', '2019-01-28 20:18:34', '2019-01-28 20:27:12');
 
 -- --------------------------------------------------------
 
@@ -52,6 +85,7 @@ INSERT INTO `category` (`id`, `name`, `description`, `created_at`, `updated_at`)
 -- Table structure for table `driver`
 --
 
+DROP TABLE IF EXISTS `driver`;
 CREATE TABLE `driver` (
   `id` int(10) UNSIGNED NOT NULL,
   `fname` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -86,6 +120,7 @@ INSERT INTO `driver` (`id`, `fname`, `lname`, `height`, `dob`, `nok`, `gender`, 
 -- Table structure for table `item`
 --
 
+DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
   `id` int(10) UNSIGNED NOT NULL,
   `driver_id` int(11) NOT NULL,
@@ -106,7 +141,15 @@ CREATE TABLE `item` (
 
 INSERT INTO `item` (`id`, `driver_id`, `item_id`, `name`, `barcode`, `serial_number`, `date_reg`, `item_expiry_date`, `status`, `created_at`, `updated_at`) VALUES
 (2, 5, 1, NULL, 'fdfdfd', 'sssss', '2020-11-24', '2020-03-12', NULL, '2019-01-02 20:21:17', '2019-01-04 16:35:15'),
-(5, 5, 2, NULL, 'sdsd', 'sd', '2019-01-04', '2019-01-03', NULL, '2019-01-04 16:50:30', '2019-01-04 20:38:44');
+(5, 5, 2, NULL, 'sdsd', 'sd', '2019-01-04', '2019-01-03', NULL, '2019-01-04 16:50:30', '2019-01-04 20:38:44'),
+(6, 1, 7, NULL, 'sds', 'as', '2019-02-02', '2019-03-06', NULL, '2019-01-28 10:09:28', '2019-01-28 21:42:04'),
+(8, 3, 5, NULL, 'xaaxax', 'sasas', '2019-01-09', '2019-01-03', NULL, '2019-01-28 11:04:12', '2019-01-28 11:04:12'),
+(10, 5, 6, NULL, '-', '-', '2019-02-07', '2019-02-09', NULL, '2019-01-28 11:42:04', '2019-01-29 05:05:55'),
+(11, 2, 6, NULL, '-', '-', '2019-01-08', '2019-01-30', NULL, '2019-01-28 11:55:41', '2019-01-28 11:55:41'),
+(12, 5, 8, NULL, 'gf', 'fgg', '2019-01-22', '2019-01-31', NULL, '2019-01-28 20:19:00', '2019-01-28 20:19:00'),
+(13, 4, 7, NULL, 'dds', 'sdsds', '2019-01-27', '2019-01-25', NULL, '2019-01-29 04:36:37', '2019-01-29 04:52:18'),
+(14, 4, 6, NULL, 'sdsdsd', 'ssasa', '2019-01-30', '2019-02-02', NULL, '2019-01-29 04:37:15', '2019-01-29 04:37:15'),
+(18, 5, 5, NULL, 'hhgg', 'ggcgvg', '2019-01-30', '2019-02-06', NULL, '2019-01-29 05:05:01', '2019-01-29 05:05:24');
 
 -- --------------------------------------------------------
 
@@ -114,6 +157,7 @@ INSERT INTO `item` (`id`, `driver_id`, `item_id`, `name`, `barcode`, `serial_num
 -- Table structure for table `migrations`
 --
 
+DROP TABLE IF EXISTS `migrations`;
 CREATE TABLE `migrations` (
   `id` int(10) UNSIGNED NOT NULL,
   `migration` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -139,6 +183,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 -- Table structure for table `password_resets`
 --
 
+DROP TABLE IF EXISTS `password_resets`;
 CREATE TABLE `password_resets` (
   `email` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -148,9 +193,30 @@ CREATE TABLE `password_resets` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `roles`
+--
+
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE `roles` (
+  `id` int(10) NOT NULL,
+  `name` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `roles`
+--
+
+INSERT INTO `roles` (`id`, `name`) VALUES
+(1, 'administrator'),
+(2, 'user');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `users`
 --
 
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -167,7 +233,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'joshua', 'joeboy@yahoo.com', NULL, '$2y$10$a.a56gyRfxFZk/rShkI5AeMGe7tFzSnuF7MsfewQHbTUZRCMotW0G', '85DtiJKtcNkuZKPOLXB4tJ3GeowVVvUE9ZZUiB5ZKjT48bN17qgH0bTeIIAG', '2019-01-04 23:00:03', '2019-01-04 23:00:03');
+(1, 'joshua', 'joeboy@yahoo.com', NULL, '$2y$10$a.a56gyRfxFZk/rShkI5AeMGe7tFzSnuF7MsfewQHbTUZRCMotW0G', 'HAbrIm4MrK4ePycCAKizlykUkmOjhuciGjCEl6RL1R8GVMOfDcgpFS4SfmXW', '2019-01-04 23:00:03', '2019-01-04 23:00:03'),
+(2, 'king peace', 'king@yahoo.com', NULL, '$2y$10$s9w52NDC24NIcX0hSu2bE..YnJqatlP/vCj5Hq5zu2edo0f/p3tZe', NULL, '2019-01-26 16:15:50', '2019-01-26 16:15:50'),
+(3, 'ab ab', 'ab@yahoo.com', NULL, '$2y$10$eaQpzgazIOI3ikSYUTsV9ufpjxiXzpsZhxnIpYk8rfPREPmU71Zqi', NULL, '2019-01-26 16:16:23', '2019-01-26 16:16:23'),
+(4, 'isaiah', 'isaiah@yahoo.com', NULL, '$2y$10$IzG4xBlYcCjpQbOllqHNMuJjdrWFDZ0wsSQZEUqwGJYJuLpnM1SIG', 'BfDHLPKYe9Ht2G6RKVcnEKoFRg2Soguk3R46fg30NTNwJfF9ZmYyOXmnhU2g', '2019-01-28 12:07:23', '2019-01-28 12:07:23');
 
 -- --------------------------------------------------------
 
@@ -175,6 +244,7 @@ INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `re
 -- Table structure for table `vehicle_reg`
 --
 
+DROP TABLE IF EXISTS `vehicle_reg`;
 CREATE TABLE `vehicle_reg` (
   `id` int(10) UNSIGNED NOT NULL,
   `driver_id` int(11) NOT NULL,
@@ -201,6 +271,12 @@ INSERT INTO `vehicle_reg` (`id`, `driver_id`, `engine_capacity`, `engine_number`
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admins`
+--
+ALTER TABLE `admins`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `category`
@@ -235,6 +311,12 @@ ALTER TABLE `password_resets`
   ADD KEY `password_resets_email_index` (`email`);
 
 --
+-- Indexes for table `roles`
+--
+ALTER TABLE `roles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -252,10 +334,16 @@ ALTER TABLE `vehicle_reg`
 --
 
 --
+-- AUTO_INCREMENT for table `admins`
+--
+ALTER TABLE `admins`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `driver`
@@ -267,7 +355,7 @@ ALTER TABLE `driver`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -276,10 +364,16 @@ ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
+-- AUTO_INCREMENT for table `roles`
+--
+ALTER TABLE `roles`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `vehicle_reg`

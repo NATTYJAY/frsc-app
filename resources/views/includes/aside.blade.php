@@ -8,20 +8,26 @@
                 <li> <a class="waves-effect waves-dark" href="{{url('/driver')}}" aria-expanded="false"><i class="icon-Car-Wheel"></i><span class="hide-menu">Dashboard</span></a>
                    
                 </li>
-                <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Double-Circle"></i><span class="hide-menu">Categories</span></a>
+                <!-- <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="icon-Double-Circle"></i><span class="hide-menu">Categories</span></a>
                     <ul aria-expanded="false" class="collapse">
                         <li><a href="{{url('/category')}}">Add Category</a></li>
                         <li><a href="{{url('/category/1')}}">Edit Category</a></li>
                     </ul>
-                </li>
+                </li> -->
                 <li> <a class="waves-effect waves-dark" href="{{url('/driver/1')}}" aria-expanded="false"><i class="icon-Box-Full"></i><span class="hide-menu">Driver</span></a>
 
                 </li>
 
                 <li> <a class="waves-effect waves-dark" href="{{url(('/search'))}}" aria-expanded="false"><i class="icon-Box-Full"></i><span class="hide-menu">Inspection</span></a>
+                </li>
+
+                 <li> <a class="waves-effect waves-dark" href="{{url(('/assignRole'))}}" aria-expanded="false"><i class="icon-Double-Circle"></i><span class="hide-menu">Assign Roles</span></a>
+                </li>
+
+                 <li> <a class="waves-effect waves-dark" href="{{url('/showall')}}" aria-expanded="false"><i class="icon-Box-Full"></i><span class="hide-menu">Show all Driver's Product</span></a>
 
                 </li>
-                
+                 
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

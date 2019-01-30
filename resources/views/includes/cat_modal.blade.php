@@ -6,7 +6,7 @@
         	
         	
             <div class="modal-body">
-                <form class="form-horizontal" id="editform1" role="form">
+                <form class="form-horizontal" id="editform1" role="form" enctype="multipart/form-data">
                    <div id="msgg"></div>
                     <div class="form-body">
                         <div class="row">
@@ -31,6 +31,8 @@
                                     <input type="text" id="dsc" class="form-control form-control" placeholder="Description" name="description">
                                 </div>
                             </div>
+
+                            <!--  <input type="file" id="input-file-now-custom-2" class="dropify" data-height="100" name="image_path" /> -->
 
                             <div class="col-md-6" hidden="hidden">
                                 <div class="form-group">

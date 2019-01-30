@@ -35,7 +35,7 @@ class request_category extends FormRequest
     {
         return [
             'name.required'=>'Please provide the name of the category',
-            'description.unique' =>'User already exits'
+            'description.required' =>'Please provide the description of the category'
 
         ];
     }

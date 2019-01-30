@@ -2,7 +2,7 @@ $(document).ready(function(){
 
  $(document).on('click', '.updatecat', function(){
             idr = $(this).attr("id");
-              $.get('/category/'+idr+'/edit', function (datas) {
+              $.get('/product/'+idr+'/edit', function (datas) {
                 $('#itName').val(datas.data['name']);
                 $('#dsc').val(datas.data['description']);
                 $('#id').val(datas.data['id']);
@@ -13,7 +13,7 @@ $(document).ready(function(){
 
   $(document).on('click', '.updateItem', function(){
             item_id = $(this).attr("id");
-              $.get('/search/'+item_id+'/edit', function (result) {
+              $.get('/admin/renew/'+item_id, function (result) {
                $('#barc').val(result.data.barcode);
                $('#serial').val(result.data.serial_number);
                $('#date_r').val(result.data.date_reg);
@@ -43,7 +43,7 @@ $(document).on('click', '.updatedriver', function(){
 
   $(document).on('click', '.deleteit', function(){
             item_id = $(this).attr("id");
-              $.get('/search/'+item_id+'/delete', function (result) {
+              $.get('/admin/delete/'+item_id, function (result) {
                  if(result.success == 11){
                     $('#msggd').addClass('alert alert-success col-lg-12 col-md-12 textcenter');
                     $('#msggd').html('<strong> Data Deleted !</strong> ');
@@ -65,7 +65,7 @@ $(document).on('click', '.updatedriver', function(){
           token = $('#_token').val();
           id_ = $('#id').val();
                $.ajax({  
-                    url:"/category/"+id_,  
+                    url:"/product/"+id_,  
                     type: "POST",  
                     data: new FormData(this), 
                     contentType: false,  
@@ -134,7 +134,7 @@ $('#renewDriverForm').on('submit',function(e){
           id__ = $('#idrr').val();
           
                $.ajax({  
-                    url:"/search/updateM/"+id__,  
+                    url:"/admin/update/"+id__,  
                     type: "POST",  
                     data: new FormData(this), 
                     contentType: false,  

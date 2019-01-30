@@ -18,7 +18,7 @@
 		                <div class="row">
 		                    
 		                   
-		                    <div class="col-md-6 col-lg-4 col-xlg-2">
+		                    <!-- <div class="col-md-6 col-lg-4 col-xlg-2">
 		                    	 <a href="{{ URL::to('/search/registerItem/'.$drivers_all[0]->id) }}">
 		                        <div class="card">
 		                            <div class="box bg-info text-center">
@@ -26,10 +26,10 @@
 		                            </div>
 		                        </div>
 		                        </a>
-		                    </div>
+		                    </div> -->
 		               
 		            
-		                    <div class="col-md-6 col-lg-4 col-xlg-2">
+		                    <div class="col-md-6 col-lg-6 col-xlg-6">
 		                    	 <a href="{{ URL::to('search/register/'.$drivers_all[0]->id) }}">
 		                        <div class="card">
 		                            <div class="box bg-primary text-center">
@@ -40,7 +40,7 @@
 		                    </a>
 		                    </div>
 		                 
-		                    <div class="col-md-6 col-lg-4 col-xlg-2">
+		                    <div class="col-md-6 col-lg-6 col-xlg-6">
 		                   <a href="{{ URL::to('/search/inspect/'.$drivers_all[0]->id) }}">
 		                        <div class="card">
 		                            <div class="box bg-success text-center">
@@ -51,7 +51,7 @@
 		                    </a>
 		                    </div>
 		                   
-		                    <div class="col-md-12 col-lg-12 col-xlg-12">
+		                   <!--  <div class="col-md-12 col-lg-12 col-xlg-12">
 		                    	 <a href="{{ URL::to('/search/update/'.$drivers_all[0]->id) }}">
 		                        <div class="card">
 		                            <div class="box bg-dark text-center">
@@ -60,7 +60,7 @@
 		                            </div>
 		                        </div>
 		                         </a>
-		                    </div>
+		                    </div> -->
 		                    <!-- Column -->
 		                   <!--  <div class="col-md-6 col-lg-4 col-xlg-2">
 		                    	<a href="#">

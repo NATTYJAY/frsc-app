@@ -7,7 +7,7 @@
 <div class="preloader">
     <div class="loader">
         <div class="loader__figure"></div>
-        <p class="loader__label">FRSC</p>
+        <p class="loader__label">Vendors</p>
     </div>
 </div>
 <!-- ============================================================== -->
@@ -25,7 +25,7 @@
     <!-- ============================================================== -->
     <!-- Left Sidebar - style you can find in sidebar.scss  -->
     <!-- ============================================================== -->
-   @include('includes.aside')
+   @include('includes.aside1')
 
     <div class="page-wrapper">
         <!-- ============================================================== -->
@@ -33,7 +33,7 @@
     <!-- @include('includes.modals') -->
         <!-- ============================================================== -->
         <div class="container-fluid">
-           @yield('content')
+            @yield('content22')
         </div>
 
 @include('includes.footer')

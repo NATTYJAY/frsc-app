@@ -11,15 +11,10 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
 
-Route::group(['middleware' => 'auth'], function () {
     Route::resources([
     'driver' => 'AdminDriverController',
     'category'=>'AdminCategoryController'
@@ -34,14 +29,38 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::post('/registerVehicle','AdminVISController@store');
 	Route::get('/search/registerItem/{id}','DriverItemController@create'); 
 	Route::post('/registerItem','DriverItemController@store'); 
+	Route::get('/assignRole','DriverItemController@assignRole');
+	Route::get('/showall','DriverItemController@showAllvendorDriverExpiration');
+	
+
+	Route::post('/registerole','DriverItemController@register_role'); 
 
 	Route::get('/driver/{driver_id}/edited','AdminDriverController@showDriverModal');
 
 	Route::post('/driver/update/{id}','AdminDriverController@updated'); 
 
+
+Route::group(['middleware'=>'user'],function(){
+	   Route::resources([
+	    'vendor' => 'VendorController'
+		]);
+	});
+
+Route::prefix('admin')->group(function () {
+Route::get('/', 'AdminController@index')->name('admin.dashboard');
+Route::get('login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+Route::post('login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+Route::get('/add','VendorController@index'); 
+Route::post('/save','VendorController@store'); 
+Route::get('/view','VendorController@show'); 
+Route::get('/renew/{id}','VendorController@edit');
+Route::post('/update/{id}','VendorController@update'); 
+Route::get('/delete/{id}','VendorController@destroy'); 
 });
 
-// Route::get('/result/inspectItem',function(){
-//     return view('admin.inspect.result.index');
-// });
+Route::resources([
+    'product'=>'VendorProductController',
+	]);
+
+
 

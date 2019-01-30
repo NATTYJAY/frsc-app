@@ -8,18 +8,21 @@ use App\Category;
 use App\Driver_Item;
 use Illuminate\Support\Facades\DB;
 use App\User;
-use App\Admin;
 use Illuminate\Support\Facades\Hash;
 
 
 
-class DriverItemController extends Controller
+class VendorDriverController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+    }
     public function index()
     {
        
@@ -27,39 +30,29 @@ class DriverItemController extends Controller
 
   
 
-     public function register_role(Request $data)
-    {
-        $user_exist = Admin::where('email',$data->input('email'))
-                                    ->get()->count();
-    if($user_exist){
-         return redirect(url()->previous())->with('alert_item_reg2',"Vendor Already Registered");
-    }else{
-         $return = Admin::create([
-            'name' => $data->input('fname') ." ".$data->input('lname') ,
-            'email' =>$data->input('email'),
-            'password' => Hash::make($data->input('Password'))
-        ]);
+    //  public function register_role(Request $data)
+    // {
+    //     $user_exist = User::where('email',$data->input('email'))
+    //                                 ->get()->count();
+    // if($user_exist){
+    //      return redirect(url()->previous())->with('alert_item_reg2',"Vendor Already Registered");
+    // }else{
+    //      $return = User::create([
+    //         'name' => $data['fname'] ." ".$data['lname'] ,
+    //         'email' => $data['email'],
+    //         'password' => Hash::make($data['password']),
+    //         'role_id'=>2,
+    //     ]);
 
-          if($return){
-            return redirect(url()->previous())->with('success_item_msgs2',"Vendor Registered Successfully");
-            }else{
-                return redirect(url()->previous())->with('error_item_msgs2',"Vendor Could not be Registered");
-            }
-    }
+    //       if($return){
+    //         return redirect(url()->previous())->with('success_item_msgs2',"Vendor Registered Successfully");
+    //         }else{
+    //             return redirect(url()->previous())->with('error_item_msgs2',"Vendor Could not be Registered");
+    //         }
+    // }
       
        
-    }
-
-    public function showAllvendorDriverExpiration(){
-
-        $category = Category::all();
-         $driver_items = DB::table('item')
-            ->join('category', 'item.item_id', '=', 'category.id')
-            ->join('driver', 'item.driver_id', '=', 'driver.id')
-            ->select('item.*', 'category.name', 'driver.fname','driver.lname','category.image_path')
-            ->get();
-        return view('admin.userRoles.item_update')->with(['driver_items'=>$driver_items,'cat'=>$category]);
-    }
+    // }
 
 
 
@@ -75,7 +68,7 @@ class DriverItemController extends Controller
     public function create($id)
     {
           $categories = Category::all();
-        return view('admin.inspect.result.driver_item')->with(['driver_id'=>$id,'categories'=>$categories]);
+        return view('vendors_layout.addItem.index')->with(['driver_id'=>$id,'categories'=>$categories]);
     }
 
     /**
