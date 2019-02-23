@@ -28,6 +28,10 @@
 
                 </li>
                  
+
+                 <li> <a class="waves-effect waves-dark" href="{{url('/search/mobile')}}" aria-expanded="false"><i class="icon-Livejournal"></i><span class="hide-menu">Live Driver Check</span></a>
+
+                </li>
             </ul>
         </nav>
         <!-- End Sidebar navigation -->

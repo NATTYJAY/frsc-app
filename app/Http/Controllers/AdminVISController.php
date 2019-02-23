@@ -55,6 +55,25 @@ class AdminVISController extends Controller
          return view('admin.inspect.result.driver_inspect',compact('driver','expired','vexpired','driver_item'));
     }
 
+
+    public function findCar(Request $request,$plate_number){
+
+       $driver_with_number =  Driver::where('plate_number','=', $plate_number)->first();
+
+       if ($driver_with_number) {
+           return response()->json([
+            "status"=> "success",
+            "url" => route("inspect-car",$driver_with_number->id)
+           ]);
+       }else{
+
+             return response()->json([
+            "status"=> "failed"
+           ], $status = 400);
+       }
+
+    }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -73,6 +92,10 @@ class AdminVISController extends Controller
         return view('admin.inspect.result.inspectBoard')->with(['drivers_all'=>$pn,'query'=>$request->input('query')]);
 
         }
+    }
+
+    public function mobile(){
+        return view('admin.inspect.wait');
     }
 
     /**

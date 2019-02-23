@@ -19,8 +19,11 @@ Route::get('/', 'HomeController@index');
     'driver' => 'AdminDriverController',
     'category'=>'AdminCategoryController'
 	]);
+
+	Route::get('/findcar/{plate_number}','AdminVISController@findCar')->name("find-plate-car");
 	Route::get('/search/','AdminVISController@search');
-	Route::get('/search/inspect/{id}','AdminVISController@index');
+	Route::get('/search/mobile','AdminVISController@mobile');
+	Route::get('/search/inspect/{id}','AdminVISController@index')->name("inspect-car");
 	Route::get('/search/register/{id}','AdminVISController@create');
 	Route::get('/search/update/{id}','AdminVISController@show');
 	Route::post('/search/updateM/{id}','AdminVISController@update');
