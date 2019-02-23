@@ -30,12 +30,10 @@
                                                 <form class="form-horizontal" role="form">
                                                     <div class="form-body">
                                                         <div class="row">
-                                                            <div class="col-md-6">
-                                                                <h3 class="box-title">Vehicle License Information</h3>
+                                                            <div class="col-md-12">
+                                                                <h3 class="box-title">Vehicle License Information for <b> {{$driver->fname}} {{$driver->lname}} </b></h3>
                                                             </div>
-                                                            <div class="col-md-6">
-
-                                                            </div>
+                                                            
                                                         </div><br>
                                                         <hr class="m-t-0 m-b-40">
                                                         <div class="row">
