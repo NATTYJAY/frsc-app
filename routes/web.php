@@ -12,40 +12,32 @@
 */
 
 Auth::routes();
-
 Route::get('/', 'HomeController@index');
-
-    Route::resources([
-    'driver' => 'AdminDriverController',
-    'category'=>'AdminCategoryController'
-	]);
-	Route::get('/search/','AdminVISController@search');
-	Route::get('/search/inspect/{id}','AdminVISController@index');
-	Route::get('/search/register/{id}','AdminVISController@create');
-	Route::get('/search/update/{id}','AdminVISController@show');
-	Route::post('/search/updateM/{id}','AdminVISController@update');
-	Route::get('/search/{id}/delete','AdminVISController@destroy');
-	Route::get('/search/{id}/edit','AdminVISController@edit');
-	Route::post('/registerVehicle','AdminVISController@store');
-	Route::get('/search/registerItem/{id}','DriverItemController@create'); 
-	Route::post('/registerItem','DriverItemController@store'); 
-	Route::get('/assignRole','DriverItemController@assignRole');
-	Route::get('/showall','DriverItemController@showAllvendorDriverExpiration');
-	
-
-	Route::post('/registerole','DriverItemController@register_role'); 
-
-	Route::get('/driver/{driver_id}/edited','AdminDriverController@showDriverModal');
-
-	Route::post('/driver/update/{id}','AdminDriverController@updated'); 
-
-
+Route::resources([
+'driver' => 'AdminDriverController',
+'category'=>'AdminCategoryController'
+]);
+Route::get('/search/','AdminVISController@search');
+Route::get('/search/inspect/{id}','AdminVISController@index');
+Route::get('/search/register/{id}','AdminVISController@create');
+Route::get('/search/update/{id}','AdminVISController@show');
+Route::post('/search/updateM/{id}','AdminVISController@update');
+Route::get('/search/{id}/delete','AdminVISController@destroy');
+Route::get('/search/{id}/edit','AdminVISController@edit');
+Route::post('/registerVehicle','AdminVISController@store');
+Route::get('/search/registerItem/{id}','DriverItemController@create'); 
+Route::post('/registerItem','DriverItemController@store'); 
+Route::get('/assignRole','DriverItemController@assignRole');
+Route::get('/showall','DriverItemController@showAllvendorDriverExpiration');
+Route::post('/registerole','DriverItemController@register_role'); 
+Route::get('/driver/{driver_id}/edited','AdminDriverController@showDriverModal');
+Route::post('/driver/update','AdminDriverController@updated');
+Route::post('/driver/updateImage/uyo','AdminDriverController@img');
 Route::group(['middleware'=>'user'],function(){
-	   Route::resources([
-	    'vendor' => 'VendorController'
-		]);
-	});
-
+   Route::resources([
+    'vendor' => 'VendorController'
+	]);
+});
 Route::prefix('admin')->group(function () {
 Route::get('/', 'AdminController@index')->name('admin.dashboard');
 Route::get('login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');

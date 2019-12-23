@@ -34,7 +34,7 @@ class Driver_validate extends FormRequest
             'nok'=>'required',
             'gender'=>'required',
             'address'=>'required',
-            'city'=>'required',
+            //'city'=>'required',
             'state'=>'required',
             'license_issue_date'=>'required',
             'license_expiry_date'=>'required',

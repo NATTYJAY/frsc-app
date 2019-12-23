@@ -29,8 +29,7 @@ class DriverItemController extends Controller
 
      public function register_role(Request $data)
     {
-        $user_exist = Admin::where('email',$data->input('email'))
-                                    ->get()->count();
+        $user_exist = Admin::where('email',$data->input('email'))->get()->count();
     if($user_exist){
          return redirect(url()->previous())->with('alert_item_reg2',"Vendor Already Registered");
     }else{
