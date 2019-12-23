@@ -17,6 +17,7 @@ Route::resources([
 'driver' => 'AdminDriverController',
 'category'=>'AdminCategoryController'
 ]);
+
 Route::get('/search/','AdminVISController@search');
 Route::get('/search/inspect/{id}','AdminVISController@index');
 Route::get('/search/register/{id}','AdminVISController@create');
